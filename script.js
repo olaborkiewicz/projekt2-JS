@@ -10,7 +10,7 @@ const calculateResult = () => {
   loaderIcon.style.display = "block";
   axios
     .get(
-      `http://api.nbp.pl/api/exchangerates/rates/a/${selectCurrency.value}/?format=json`
+      `https://api.nbp.pl/api/exchangerates/rates/a/${selectCurrency.value}/?format=json`
     )
     .then((response) => {
       resultWindow.innerText = `TO  ${
