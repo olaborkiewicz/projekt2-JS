@@ -7,6 +7,13 @@ const loaderIcon = document.querySelector(".loader");
 loaderIcon.style.display = "none";
 
 const calculateResult = () => {
+  if (amountInput.value == "") {
+    alert("Uzupełnij kwotę");
+    return;
+  } else if (amountInput.value <= 0) {
+    alert("Wpisano złą wartość");
+    return;
+  }
   loaderIcon.style.display = "block";
   axios
     .get(
@@ -18,12 +25,6 @@ const calculateResult = () => {
       }  PLN`;
     })
     .finally(() => (loaderIcon.style.display = "none"));
-
-  if (amountInput.value == "") {
-    alert("Uzupełnij kwotę");
-  } else if (amountInput.value <= 0) {
-    alert("Wpisano złą wartość");
-  }
 };
 
 counterBtn.addEventListener("click", calculateResult);
