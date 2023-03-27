@@ -4,17 +4,7 @@ const counterBtn = document.querySelector(".counter");
 const resultWindow = document.querySelector(".result");
 const loaderIcon = document.querySelector(".loader");
 
-loaderIcon.style.display = "none";
-
-const calculateResult = () => {
-  if (amountInput.value == "") {
-    alert("Uzupełnij kwotę");
-    return;
-  } else if (amountInput.value <= 0) {
-    alert("Wpisano złą wartość");
-    return;
-  }
-  loaderIcon.style.display = "block";
+const getCurrency = () => {
   axios
     .get(
       `https://api.nbp.pl/api/exchangerates/rates/a/${selectCurrency.value}/?format=json`
@@ -25,6 +15,17 @@ const calculateResult = () => {
       }  PLN`;
     })
     .finally(() => (loaderIcon.style.display = "none"));
+};
+
+const calculateResult = () => {
+  if (amountInput.value === "") {
+    alert("Uzupełnij kwotę");
+    return;
+  } else if (amountInput.value <= 0) {
+    alert("Wpisano złą wartość");
+    return;
+  } else getCurrency();
+  loaderIcon.style.display = "block";
 };
 
 counterBtn.addEventListener("click", calculateResult);
