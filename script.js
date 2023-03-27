@@ -19,9 +19,11 @@ const getCurrency = () => {
 
 const calculateResult = () => {
   if (amountInput.value === "") {
+    resultWindow.innerText = "";
     alert("Uzupełnij kwotę");
     return;
   } else if (amountInput.value <= 0) {
+    resultWindow.innerText = "";
     alert("Wpisano złą wartość");
     return;
   } else getCurrency();
